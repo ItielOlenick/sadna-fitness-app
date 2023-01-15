@@ -111,8 +111,6 @@ public class WgerController {
         }
         exerciseRepository.saveAll(exercises);
         categoryRepository.saveAll(categories);
-
-
     }
 }
 

@@ -35,7 +35,6 @@ public class WorkoutLogController {
 
     @PostMapping("/logs")
     public ResponseEntity<WorkoutLog> creatWorkoutLog(@RequestBody WorkoutLog workout) {
-//        List<Set> broken = checkPr(workout, workout.getUser().getId());
         workoutLogRepository.save(workout);
         return new ResponseEntity<WorkoutLog>(workout, HttpStatus.CREATED);
     }
@@ -53,7 +52,6 @@ public class WorkoutLogController {
 
     @PutMapping("/logs")
     public ResponseEntity<WorkoutLog> updateWorkout(@RequestBody WorkoutLog workout) {
-//        List<Set> broken = checkPr(workout, workout.getUser().getId());
         workoutLogRepository.save(workout);
         return new ResponseEntity<WorkoutLog>(workout, HttpStatus.CREATED);
     }

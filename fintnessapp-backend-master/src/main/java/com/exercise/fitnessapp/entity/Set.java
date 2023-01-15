@@ -22,7 +22,7 @@ public class Set{
 
     private int  reps;
 
-    private int weight;
+    private float weight;
 
     private String exercisePath;
 
