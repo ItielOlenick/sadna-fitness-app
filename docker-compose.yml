@@ -1,40 +1,40 @@
-version: '3'
+version: "3"
 services:
-    frontend:
-        container_name: fintnessapp-frontend
-        build:
-            context: fintnessapp-frontend-master
-            dockerfile: Dockerfile
-        image: fintnessapp-frontend:latest
-        ports:
-            - 3000:3000
-        networks:
-            - network
-    backend:
-        container_name: fintnessapp-backend
-        build:
-            context: fintnessapp-backend-master
-            dockerfile: Dockerfile
-        image: fintnessapp-backend:latest
-        ports:
-            - 8080:8080
-        environment:
-            - spring.datasource.url=jdbc:mysql://db:3306/fitnessapp
-        networks:
-            - network
-        depends_on:
-            db:
-                condition: service_healthy
-    db:
-        image: mysql
-        networks:
-            - network
-        environment:
-            - MYSQL_ALLOW_EMPTY_PASSWORD=true
-            - MYSQL_DATABASE=fitnessapp
-        healthcheck:
-            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-            timeout: 20s
-            retries: 10
+  frontend:
+    container_name: fintnessapp-frontend
+    build:
+      context: fintnessapp-frontend-master
+      dockerfile: Dockerfile
+    image: fintnessapp-frontend:latest
+    ports:
+      - 3000:3000
+    networks:
+      - network
+  backend:
+    container_name: fintnessapp-backend
+    build:
+      context: fintnessapp-backend-master
+      dockerfile: Dockerfile
+    image: fintnessapp-backend:latest
+    ports:
+      - 8080:8080
+    environment:
+      - spring.datasource.url=jdbc:mysql://db:3306/fitnessapp
+    networks:
+      - network
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: mysql
+    networks:
+      - network
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=fitnessapp
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
 networks:
-    network:
+  network:

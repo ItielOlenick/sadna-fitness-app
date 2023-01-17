@@ -5,4 +5,4 @@ RUN mvn -f /home/app/pom.xml package
 
 FROM adoptopenjdk/openjdk11
 COPY --from=build /home/app/target/fitnessapp-0.0.1-SNAPSHOT.jar /usr/local/lib/fitnessapp-0.0.1-SNAPSHOT.jar
-ENTRYPOINT ["java","-jar","/usr/local/lib/fitnessapp-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","/usr/local/lib/fitnessapp-0.0.1-SNAPSHOT.jar"] 

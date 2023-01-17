@@ -19,4 +19,4 @@ EXPOSE 3000
 # Start the app
 # CMD [ "npx", "serve", "build" ]
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "start"] 
