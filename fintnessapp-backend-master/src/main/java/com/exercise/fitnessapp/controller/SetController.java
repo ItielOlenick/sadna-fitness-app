@@ -28,9 +28,12 @@ public class SetController {
     }
 
     @GetMapping("/prs")
-    public ResponseEntity<List<Set>> readPrs(@RequestParam String userId, String exercise, boolean all) {
-        if(all)
-            return new ResponseEntity<List<Set>>(setRepository.findByUser_IdAndPrIsTrueAndNameIsOrderByPerformedAtAsc(userId, exercise), HttpStatus.OK);
-        return new ResponseEntity<List<Set>>(setRepository.findFirstByUser_idAndPrIsTrueAndNameIsOrderByWeightDesc(userId, exercise), HttpStatus.OK);
+    public ResponseEntity<List<Set>> readPrs(@RequestParam String userId, String exercise) {
+        return new ResponseEntity<List<Set>>(setRepository.findByUser_IdAndPrIsTrueAndNameIsOrderByPerformedAtAsc(userId, exercise), HttpStatus.OK);
+    }
+
+    @GetMapping("/pr")
+    public ResponseEntity<Set> readPr(@RequestParam String userId, String exercise) {
+        return new ResponseEntity<Set>(setRepository.findFirstByUser_idAndPrIsTrueAndNameIsOrderByWeightDesc(userId, exercise), HttpStatus.OK);
     }
 }
