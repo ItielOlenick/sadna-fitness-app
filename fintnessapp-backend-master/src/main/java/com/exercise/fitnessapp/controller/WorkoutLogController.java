@@ -73,7 +73,7 @@ public class WorkoutLogController {
                 System.out.println("First time preforming the " + set.getName() + " exercise");
                 maxSet.setPr(true);
             } else {
-                Set existingPr = setRepository.findByUser_idAndPrIsTrueAndNameIsOrderByWeightDesc(userId, set.getName()).get(0);
+                Set existingPr = setRepository.findByUser_IdAndNameIsOrderByWeightDesc(userId, set.getName()).get(0);
                 System.out.println("Existing pr for " + set.getName() + " is " + existingPr);
                 System.out.println("Checking against " + maxSet);
                 if (existingPr.getWeight() < maxSet.getWeight()) {
