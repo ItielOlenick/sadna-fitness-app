@@ -13,7 +13,10 @@ public interface SetRepository extends JpaRepository<Set, Integer>{
     List<Set> findByUser_IdAndPrIsTrueAndNameIsOrderByPerformedAtAsc(String userId, String name);
     List<Set> findByUser_IdAndNameIs(String userId, String Name);
     List<Set> findByUser_IdAndNameIsOrderByWeightDesc(String userId, String name);
+    List<Set> findFirstByUser_idAndPrIsTrueAndNameIsOrderByWeightDesc(String userId, String name);
+
     List<Set> findByUser_idAndPrIsTrueAndNameIsOrderByWeightDesc(String userId, String name);
+
 
 }
 
