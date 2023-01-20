@@ -220,42 +220,6 @@ const AddLog = (props) => {
         ? LogService.update(log)
         : LogService.create(log)
       )
-        .then((response) => {
-          if (response.data.length > 4)
-            notification.open({
-              key: "multiple",
-              message: "Multiple PR's Broken! 💪",
-              description: `You are in the zone!`,
-              btn: (
-                <Button
-                  onClick={() => {
-                    notification.close("multiple");
-                    multiplePr(response.data);
-                  }}
-                >
-                  View PR's
-                </Button>
-              ),
-              duration: 0,
-            });
-          else
-            response.data.forEach((element, i, a) => {
-              if (i % 2 === 0) {
-                notification.open({
-                  message: "PR Broken! 💪",
-                  description: `Congratulations! your broke your previous record for the ${
-                    a[i].name
-                  }. Your new PR is ${a[i + 1].weight}. Keep up the good work!`,
-                  duration: 0,
-                });
-              }
-            });
-          if (!props.location.state.edit) props.done();
-          history.push("/logList");
-        })
-        .catch((error) => {
-          console.log("Somthing went wrong", error);
-        });
     } else
       message.warn(
         "No completed sets. Please complete at least one set before saving the workout",

@@ -33,5 +33,5 @@ public class Set{
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private User user;
 
-    private Date preformedAt;
+    private Date performedAt;
 }

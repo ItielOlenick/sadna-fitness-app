@@ -30,7 +30,7 @@ public class SetController {
     @GetMapping("/prs")
     public ResponseEntity<List<Set>> readPrs(@RequestParam String userId, String exercise, boolean all) {
         if(all)
-            return new ResponseEntity<List<Set>>(setRepository.findByUser_IdAndPrIsTrueAndNameIsOrderByPreformedAtAsc(userId, exercise), HttpStatus.OK);
+            return new ResponseEntity<List<Set>>(setRepository.findByUser_IdAndPrIsTrueAndNameIsOrderByPerformedAtAsc(userId, exercise), HttpStatus.OK);
         return new ResponseEntity<List<Set>>(setRepository.findByUser_idAndPrIsTrueAndNameIsOrderByWeightDesc(userId, exercise), HttpStatus.OK);
     }
 }
