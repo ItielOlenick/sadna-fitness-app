@@ -1,15 +1,5 @@
 version: "3"
 services:
-  frontend:
-    container_name: fintnessapp-frontend
-    build:
-      context: fintnessapp-frontend-master
-      dockerfile: Dockerfile
-    image: fintnessapp-frontend:latest
-    ports:
-      - 3000:3000
-    networks:
-      - network
   backend:
     container_name: fintnessapp-backend
     build:

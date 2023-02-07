@@ -111,6 +111,25 @@ public class WgerController {
         }
         exerciseRepository.saveAll(exercises);
         categoryRepository.saveAll(categories);
+
+        printReadyMessage();
+    }
+
+    private void printReadyMessage(){
+        System.out.println("\n" +
+                "  ___ _ _                      _             \n" +
+                " | __(_) |_ _ _  ___ ______   /_\\  _ __ _ __ \n" +
+                " | _|| |  _| ' \\/ -_|_-<_-<  / _ \\| '_ \\ '_ \\\n" +
+                " |_| |_|\\__|_||_\\___/__/__/ /_/ \\_\\ .__/ .__/\n" +
+                "  _                      _        |_|  |_|   \n" +
+                " (_)___  _ _ ___ __ _ __| |_  _              \n" +
+                " | (_-< | '_/ -_) _` / _` | || |_            \n" +
+                " |_/__/ |_| \\___\\__,_\\__,_|\\_, (_)           \n" +
+                "  ___       _          _   |__/              \n" +
+                " | __|_ _  (_)___ _  _| |                    \n" +
+                " | _|| ' \\ | / _ \\ || |_|                    \n" +
+                " |___|_||_|/ \\___/\\_, (_)                    \n" +
+                "         |__/     |__/                       \n");
     }
 }
 

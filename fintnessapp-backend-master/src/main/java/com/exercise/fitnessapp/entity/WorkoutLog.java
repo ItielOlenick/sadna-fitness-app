@@ -16,13 +16,6 @@ import java.util.Date;
 @Setter
 public class WorkoutLog extends Workout {
 
-/* TODO
-    start time
-    end time
-    check pr
-
-
-* */
     @Column(length = 2048)
     private String notes;
 
