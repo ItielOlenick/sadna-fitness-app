@@ -12,7 +12,7 @@ Docker installed on your system.
 
 - Frontend
 
-Android studio installed on your system. \<Nir - Add some explanation on how to get the emulator up and running>
+Android studio installed on your system, or any other Android emulator. 
 
 - backend
 
@@ -32,4 +32,21 @@ Android studio installed on your system. \<Nir - Add some explanation on how to 
 
   The frontend is made of a android app (APK). Once the backend is ready,
 
-  \<Nir - Explain how to run the app in the emulator>
+  Launch the APK with your Android Emulator. If using Android Studio, follow these steps:
+  
+  Go to File > Profile or Debug APK > AndroidFitnessApp.apk (Select from where the file is located.)
+
+  Once Android Studio finishes loading the apk file, If you have a selected AVD (Android Virtual Device) - Press the green 'Run' button at the top, and the application should run.
+
+  if there is no selected AVD (Android Virtual Device) - select one from the scrollbar to the left of the 'Run' button.
+
+  if the list of available AVDs is empty, navigate to the Device Manager and press 'Create Device'.
+
+  a Virtual Device Configuration window will open. Select a phone that has the 'Play Store' field non-empty and press next.
+
+  After selecting a device, select an Android version for the device to install. press Next and wait for the download to complete.
+
+  After that, make sure the AVD you installed is selected. And press the 'Run' button. The application should now run.
+
+
+
