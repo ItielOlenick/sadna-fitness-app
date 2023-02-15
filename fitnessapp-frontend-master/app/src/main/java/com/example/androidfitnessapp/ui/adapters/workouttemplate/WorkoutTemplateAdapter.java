@@ -139,6 +139,7 @@ public class WorkoutTemplateAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     {
         private Button addExerciseButton = itemView.findViewById(R.id.btn_workout_add_ex);
         private Button saveWorkoutButton = itemView.findViewById(R.id.btn_save_workout);
+        private Button cancelWorkoutButton = itemView.findViewById(R.id.btn_cancel_workout);
 
         public WorkoutTemplateButtons(@NonNull View itemView) {
             super(itemView);
@@ -165,6 +166,14 @@ public class WorkoutTemplateAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 public void onClick(View view)
                 {
                     saveListener.onSaveButtonClicked(null);
+                }
+            });
+
+            cancelWorkoutButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Navigation.findNavController(view).navigate(R.id.action_navigation_template_to_workouts);
+
                 }
             });
         }

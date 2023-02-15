@@ -52,7 +52,7 @@ public class SummarisedWorkoutLogData extends SummarisedWorkoutData
                 String set = setData.getReps() + " x " + setData.getWeight() + " Kg";
                 if(setData.isPr())
                 {
-                    set += " - New Personal Record!";
+                    set += " - New Personal Record! \uD83D\uDCAA";
                 }
                 sets.add(set);
             }

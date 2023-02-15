@@ -153,6 +153,7 @@ public class ActiveWorkoutAdapter extends RecyclerView.Adapter<RecyclerView.View
     public static class ActiveWorkoutButtonViewHolder extends RecyclerView.ViewHolder {
         private Button addExerciseButton = itemView.findViewById(R.id.btn_workout_add_ex);
         private Button saveWorkoutButton = itemView.findViewById(R.id.btn_save_workout);
+        private Button cancelWorkoutButton = itemView.findViewById(R.id.btn_cancel_workout);
         private EditText notesEditText = itemView.findViewById(R.id.et_notes);
 
         public ActiveWorkoutButtonViewHolder(@NonNull View itemView) {
@@ -180,6 +181,14 @@ public class ActiveWorkoutAdapter extends RecyclerView.Adapter<RecyclerView.View
                 public void onClick(View view)
                 {
                     listener.onSaveButtonClicked(notesEditText.getText().toString());
+                }
+            });
+
+            cancelWorkoutButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Navigation.findNavController(view).navigate(R.id.action_navigation_active_to_workouts);
+
                 }
             });
         }
