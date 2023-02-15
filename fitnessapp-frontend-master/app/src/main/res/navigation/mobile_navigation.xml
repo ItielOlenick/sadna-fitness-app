@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    android:label="@string/title_log"
+    app:startDestination="@+id/navigation_workouts">
+
+    <fragment
+        android:id="@+id/navigation_workouts"
+        android:name="com.example.androidfitnessapp.ui.workouts.WorkoutsFragment"
+        android:label="@string/title_workouts"
+        tools:layout="@layout/fragment_workouts">
+        <action
+            android:id="@+id/action_navigation_workouts_to_template"
+            app:destination="@id/navigation_workout_template" />
+        <action
+            android:id="@+id/action_navigation_workouts_to_active"
+            app:destination="@id/navigation_active_workout" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_logs"
+        android:name="com.example.androidfitnessapp.ui.logs.LogsFragment"
+        android:label="@string/title_logs"
+        tools:layout="@layout/fragment_logs">
+        <action
+            android:id="@+id/action_navigation_logs_to_logFragment"
+            app:destination="@id/navigation_log" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_exercises"
+        android:name="com.example.androidfitnessapp.ui.exercises.ExercisesFragment"
+        android:label="@string/title_exercises"
+        tools:layout="@layout/fragment_exercises" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.androidfitnessapp.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/navigation_log"
+        android:name="com.example.androidfitnessapp.ui.log.LogFragment"
+        android:label="@string/title_log"
+        tools:layout="@layout/fragment_log">
+        <argument
+            android:name="id"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_logFragment_to_navigation_logs"
+            app:destination="@id/navigation_logs"
+            app:launchSingleTop="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_workout_template"
+        android:name="com.example.androidfitnessapp.ui.workouttemplate.WorkoutTemplateFragment"
+        android:label="@string/title_workout_template"
+        tools:layout="@layout/fragment_workout_template">
+        <action
+            android:id="@+id/action_navigation_template_to_workouts"
+            app:destination="@id/navigation_workouts" />
+        <argument
+            android:name="id"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/navigation_template_to_picker"
+            app:destination="@id/navigation_exercise_picker1" />
+        <argument
+            android:name="workoutData"
+            app:argType="com.example.androidfitnessapp.data.WorkoutData" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_active_workout"
+        android:name="com.example.androidfitnessapp.ui.activeWorkout.ActiveWorkoutFragment"
+        android:label="Workout In Progress"
+        tools:layout="@layout/fragment_active_workout">
+        <action
+            android:id="@+id/action_navigation_active_to_workouts"
+            app:destination="@id/navigation_workouts" />
+        <argument
+            android:name="id"
+            android:defaultValue="-1" />
+        <argument
+            android:name="workoutData"
+            app:argType="com.example.androidfitnessapp.data.WorkoutData" />
+        <action
+            android:id="@+id/action_navigation_active_to_picker"
+            app:destination="@id/navigation_exercise_picker1" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_exercise_picker1"
+        android:name="com.example.androidfitnessapp.ui.exercisePicker.ExercisePickerFirstFragment"
+        android:label="@string/title_choose_exercise">
+        <action
+            android:id="@+id/action_navigation_picker1_to_picker2"
+            app:destination="@id/navigation_exercise_picker_2" />
+        <argument
+            android:name="workoutData"
+            app:argType="com.example.androidfitnessapp.data.WorkoutData" />
+        <action
+            android:id="@+id/action_navigation_picker1_to_template"
+            app:destination="@id/navigation_workout_template" />
+        <action
+            android:id="@+id/action_navigation_exercise_picker1_to_navigation_active_workout"
+            app:destination="@id/navigation_active_workout" />
+        <argument
+            android:name="workoutType"
+            app:argType="com.example.androidfitnessapp.services.WorkoutType" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_exercise_picker_2"
+        android:name="com.example.androidfitnessapp.ui.exercisePicker.ExercisePickerSecondFragment"
+        android:label="@string/title_choose_exercise">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="workoutData"
+            app:argType="com.example.androidfitnessapp.data.WorkoutData" />
+        <action
+            android:id="@+id/action_navigation_picker2_to_template"
+            app:destination="@id/navigation_workout_template" />
+        <action
+            android:id="@+id/action_navigation_exercise_picker_2_to_navigation_active_workout"
+            app:destination="@id/navigation_active_workout" />
+        <argument
+            android:name="workoutType"
+            app:argType="com.example.androidfitnessapp.services.WorkoutType" />
+    </fragment>
+
+</navigation>
