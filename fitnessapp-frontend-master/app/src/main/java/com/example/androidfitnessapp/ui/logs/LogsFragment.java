@@ -42,8 +42,8 @@ public class LogsFragment extends Fragment implements LogServiceListener {
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         return root;
-
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
@@ -63,7 +63,7 @@ public class LogsFragment extends Fragment implements LogServiceListener {
     public void onGetAllLogsCompleted(JSONArray response)
     {
         List<SummarisedWorkoutLogData> list = Util.getWorkoutLogsFromJSON(response.toString());
-        recyclerView.setAdapter(new WorkoutLogsAdapter(getContext(), list));
+        recyclerView.setAdapter(new WorkoutLogsAdapter(list));
     }
 
     @Override

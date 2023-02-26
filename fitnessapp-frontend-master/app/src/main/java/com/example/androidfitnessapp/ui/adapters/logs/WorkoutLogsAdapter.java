@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,14 +23,11 @@ import java.util.List;
 public class WorkoutLogsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 {
     private List<SummarisedWorkoutLogData> logs = new ArrayList<>();
-    private Context context;
 
-    public WorkoutLogsAdapter(Context context, List<SummarisedWorkoutLogData> logs)
+    public WorkoutLogsAdapter(List<SummarisedWorkoutLogData> logs)
     {
         this.logs = logs;
-        this.context = context;
     }
-
 
     @NonNull
     @Override
@@ -71,16 +69,16 @@ public class WorkoutLogsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         private final TextView textDate = itemView.findViewById(R.id.text_date);
         private final TextView textWorkoutName = itemView.findViewById(R.id.text_confirm_del);
         private final TextView textWorkoutLogDuration = itemView.findViewById(R.id.text_workout_duration);
-
+        private final CardView cardView = itemView.findViewById(R.id.cardView);
         private final RecyclerView exerciseList = itemView.findViewById(R.id.log_exercise_recycler_view);
 
         private void bind(SummarisedWorkoutLogData logData)
         {
             textDate.setText(Util.dateToSimplifiedString(logData.date));
             textWorkoutName.setText(logData.getName());
-            exerciseList.setAdapter(new ExerciseListAdapter(logData.getExercises()));
             textWorkoutLogDuration.setText(logData.getDuration());
-            itemView.setOnClickListener(new View.OnClickListener() {
+            View.OnClickListener clickListener = new View.OnClickListener()
+            {
                 @Override
                 public void onClick(View view) {
                     Log.d("CLICK", "onClick: " + logData.getId());
@@ -88,7 +86,9 @@ public class WorkoutLogsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     bundle.putInt("id", logData.getId());
                     Navigation.findNavController(view).navigate(R.id.action_navigation_logs_to_logFragment, bundle);
                 }
-            });
+            };
+            cardView.setOnClickListener(clickListener);
+            exerciseList.setAdapter(new ExerciseListAdapter(logData.getExercises(), clickListener));
 
         }
     }

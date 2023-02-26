@@ -103,10 +103,19 @@ public class WorkoutsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         private void bind(SummarisedWorkoutData data, WorkoutsButtonsListener listener)
         {
-            textWorkoutName.setText(data.getName());
-            exerciseList.setAdapter(new ExerciseListAdapter(data.exercises));
+            View.OnClickListener clickListener = new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View view) {
+                    listener.onStartActiveWorkout(data.getData());
+                }
+            };
 
-            itemView.setOnClickListener(new View.OnClickListener()
+            textWorkoutName.setText(data.getName());
+            exerciseList.setAdapter(new ExerciseListAdapter(data.exercises, clickListener));
+
+            itemView.setOnClickListener(clickListener);
+            /*itemView.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View view)
@@ -115,7 +124,7 @@ public class WorkoutsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     //listener.onStartActiveWorkoutButtonPressed(data.getId());
                 }
             });
-
+*/
             editWorkoutButton.setOnClickListener(new View.OnClickListener()
             {
                 @Override
@@ -180,9 +189,18 @@ public class WorkoutsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         private void bind(SummarisedWorkoutData data, WorkoutsButtonsListener listener)
         {
             textWorkoutName.setText(data.getName());
-            exerciseList.setAdapter(new ExerciseListAdapter(data.exercises));
 
-            itemView.setOnClickListener(new View.OnClickListener()
+            View.OnClickListener clickListener = new View.OnClickListener() {
+                @Override
+                public void onClick(View view)
+                {
+                    listener.onStartActiveWorkout(data.getData());
+                }
+            };
+            exerciseList.setAdapter(new ExerciseListAdapter(data.exercises, clickListener));
+
+            itemView.setOnClickListener(clickListener);
+            /*itemView.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View view)
@@ -190,7 +208,7 @@ public class WorkoutsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                     listener.onStartActiveWorkout(data.getData());
                     //listener.onStartActiveWorkoutButtonPressed(data.getId());
                 }
-            });
+            });*/
         }
     }
 

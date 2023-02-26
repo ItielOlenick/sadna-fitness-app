@@ -1,12 +1,12 @@
 package com.example.androidfitnessapp.ui.adapters.workouts;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidfitnessapp.R;
@@ -17,16 +17,18 @@ import java.util.List;
 public class ExerciseListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 {
     private List<String> exercises = new ArrayList<>();
+    private View.OnClickListener clickListener;
 
-    public ExerciseListAdapter(List<String> exercises)
+    public ExerciseListAdapter(List<String> exercises, View.OnClickListener clickListener)
     {
         this.exercises = exercises;
+        this.clickListener = clickListener;
     }
-
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cell_exercise_sets, parent, false);
         return new ExerciseListViewHolder(view);
     }
@@ -36,17 +38,19 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     {
         if(holder instanceof ExerciseListViewHolder)
         {
-            ((ExerciseListViewHolder)holder).bind(exercises.get(position));
+            ((ExerciseListViewHolder)holder).bind(exercises.get(position), clickListener);
         }
     }
 
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+    {
         return this.exercises.size();
     }
 
     @Override
-    public int getItemViewType(int position) {
+    public int getItemViewType(int position)
+    {
         return super.getItemViewType(position);
     }
 
@@ -58,9 +62,11 @@ public class ExerciseListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
 
         private final TextView textExercise = itemView.findViewById(R.id.text_set);
+        private final ConstraintLayout constraintLayout = itemView.findViewById(R.id.set_constraint_layout);
 
-        private void bind(String exercise)
+        private void bind(String exercise, View.OnClickListener clickListener)
         {
+            constraintLayout.setOnClickListener(clickListener);
             textExercise.setText(exercise);
         }
     }
