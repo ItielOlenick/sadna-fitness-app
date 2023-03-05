@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 
 import com.example.androidfitnessapp.services.UserService;
+import com.example.androidfitnessapp.services.UserServiceListener;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -25,7 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 
-public class SignInActivity extends AppCompatActivity {
+public class SignInActivity extends AppCompatActivity implements UserServiceListener {
 
 
     private GoogleSignInClient mGoogleSignInClient;
@@ -42,8 +43,10 @@ public class SignInActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         if(user!=null)
         {
+            service.createUser(user.getUid());
+            /*
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-            startActivity(intent);
+            startActivity(intent);*/
         }
     }
 
@@ -53,9 +56,10 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        mAuth = FirebaseAuth.getInstance();
 
-        service = new UserService(this);
+        mAuth = FirebaseAuth.getInstance();
+        service = new UserService(this, this, findViewById(R.id.google_signIn));
+
 
         createRequest();
 
@@ -66,9 +70,10 @@ public class SignInActivity extends AppCompatActivity {
                 signIn();
             }
         });
-
-
     }
+
+
+
 
 
     private void createRequest() {
@@ -127,8 +132,8 @@ public class SignInActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
                             service.createUser(user.getUid());
-                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                            startActivity(intent);
+/*                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                            startActivity(intent);*/
 
                         } else {
                             Toast.makeText(SignInActivity.this, "Sorry auth failed.", Toast.LENGTH_SHORT).show();
@@ -138,4 +143,10 @@ public class SignInActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onAddUserComplete()
+    {
+        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(intent);
+    }
 }

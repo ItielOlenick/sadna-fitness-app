@@ -2,6 +2,7 @@ package com.example.androidfitnessapp.services;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -14,9 +15,9 @@ public class WgerService extends AppService
 {
     private WgerServiceListener listener;
 
-    public WgerService(Context context, WgerServiceListener listener)
+    public WgerService(Context context, WgerServiceListener listener, View view)
     {
-        super(context);
+        super(context, view);
         this.listener = listener;
     }
 
@@ -43,7 +44,7 @@ public class WgerService extends AppService
                             @Override
                             public void onErrorResponse(VolleyError error)
                             {
-                                Log.d("ERROR!", "onErrorResponse: " + error);
+                                onError();
                             }
                         });
 
@@ -73,7 +74,7 @@ public class WgerService extends AppService
                             @Override
                             public void onErrorResponse(VolleyError error)
                             {
-                                Log.d("ERROR!", "onErrorResponse: " + error);
+                                onError();
                             }
                         });
 

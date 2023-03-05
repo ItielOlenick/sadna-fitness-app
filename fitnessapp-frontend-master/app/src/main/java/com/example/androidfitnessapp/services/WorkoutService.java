@@ -2,6 +2,7 @@ package com.example.androidfitnessapp.services;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
 
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
@@ -25,9 +26,9 @@ import java.util.ArrayList;
 public class WorkoutService extends AppService
 {
     private WorkoutServiceListener listener;
-    public WorkoutService(Context context, WorkoutServiceListener listener)
+    public WorkoutService(Context context, WorkoutServiceListener listener, View view)
     {
-        super(context);
+        super(context, view);
         this.listener = listener;
     }
 
@@ -53,7 +54,7 @@ public class WorkoutService extends AppService
                             @Override
                             public void onErrorResponse(VolleyError error)
                             {
-                                Log.d("ERROR!", "onErrorResponse: " + error);
+                                onError();
                             }
                         });
 
@@ -109,7 +110,7 @@ public class WorkoutService extends AppService
                                 @Override
                                 public void onErrorResponse(VolleyError error)
                                 {
-                                    Log.d("ERROR!", "onErrorResponse: " + error);
+                                    onError();
                                 }
                             });
 
@@ -118,10 +119,8 @@ public class WorkoutService extends AppService
         }
         catch (Exception e)
         {
-            Log.d("EXCEPTION", "create: " + e);
+            onError(e.toString());
         }
-
-
     }
 
     public void getWorkout(int id, WorkoutType type)
@@ -146,7 +145,7 @@ public class WorkoutService extends AppService
                             @Override
                             public void onErrorResponse(VolleyError error)
                             {
-                                Log.d("ERROR!", "onErrorResponse: " + error);
+                                onError();
                             }
                         });
 
@@ -201,7 +200,7 @@ public class WorkoutService extends AppService
                                 @Override
                                 public void onErrorResponse(VolleyError error)
                                 {
-                                    Log.d("ERROR!", "onErrorResponse: " + error);
+                                    onError();
                                 }
                             });
 
@@ -210,7 +209,7 @@ public class WorkoutService extends AppService
         }
         catch (Exception e)
         {
-            Log.d("EXCEPTION", "create: " + e);
+            onError(e.toString());
         }
     }
 
@@ -235,7 +234,7 @@ public class WorkoutService extends AppService
                             @Override
                             public void onErrorResponse(VolleyError error)
                             {
-                                Log.d("ERROR!", "onErrorResponse: " + error);
+                                onError();
                             }
                         });
 

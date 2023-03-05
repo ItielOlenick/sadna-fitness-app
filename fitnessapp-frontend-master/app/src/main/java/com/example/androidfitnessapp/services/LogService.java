@@ -2,6 +2,7 @@ package com.example.androidfitnessapp.services;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
 
 
 import com.android.volley.Request;
@@ -28,9 +29,9 @@ public class LogService extends AppService
 {
     private LogServiceListener listener;
 
-    public LogService(Context context, LogServiceListener listener)
+    public LogService(Context context, LogServiceListener listener, View view)
     {
-        super(context);
+        super(context, view);
         this.listener = listener;
     }
 
@@ -56,7 +57,7 @@ public class LogService extends AppService
                             @Override
                             public void onErrorResponse(VolleyError error)
                             {
-                                Log.d("ERROR!", "onErrorResponse: " + error);
+                                onError();
                             }
                         });
 
@@ -87,7 +88,7 @@ public class LogService extends AppService
                             @Override
                             public void onErrorResponse(VolleyError error)
                             {
-                                Log.d("ERROR!", "onErrorResponse: " + error);
+                                onError();
                             }
                         });
 
@@ -149,7 +150,7 @@ public class LogService extends AppService
                                 @Override
                                 public void onErrorResponse(VolleyError error)
                                 {
-                                    Log.d("Log Creation Error!", "onErrorResponse: " + error);
+                                    onError();
                                 }
                             });
 
@@ -158,9 +159,7 @@ public class LogService extends AppService
         }
         catch (Exception e)
         {
-            Log.d("EXCEPTION", "create: " + e);
+            onError(e.toString());
         }
-
-
     }
 }

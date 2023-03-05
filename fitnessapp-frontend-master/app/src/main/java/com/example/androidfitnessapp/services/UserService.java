@@ -2,6 +2,7 @@ package com.example.androidfitnessapp.services;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -12,10 +13,12 @@ import org.json.JSONObject;
 
 public class UserService extends AppService
 {
+    private UserServiceListener listener;
 
-    public UserService(Context context)
+    public UserService(Context context, UserServiceListener listener, View view)
     {
-        super(context);
+        super(context, view);
+        this.listener = listener;
     }
 
     public void createUser(String uid)
@@ -36,6 +39,7 @@ public class UserService extends AppService
                                 @Override
                                 public void onResponse(JSONObject response)
                                 {
+                                    listener.onAddUserComplete();
                                     Log.d("SUCCESS!", "onResponse: " + response);
                                 }
                             },
@@ -43,7 +47,7 @@ public class UserService extends AppService
                                 @Override
                                 public void onErrorResponse(VolleyError error)
                                 {
-                                    Log.d("ERROR!", "onErrorResponse: " + error);
+                                    onError();
                                 }
                             });
 
@@ -51,6 +55,7 @@ public class UserService extends AppService
         }
         catch (Exception e)
         {
+            onError(e.toString());
         }
 
     }

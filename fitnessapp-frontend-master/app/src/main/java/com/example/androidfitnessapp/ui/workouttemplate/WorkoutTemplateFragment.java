@@ -38,7 +38,7 @@ public class WorkoutTemplateFragment extends Fragment implements SaveWorkoutButt
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentWorkoutTemplateBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        service = new WorkoutService(getContext(), this);
+        service = new WorkoutService(getContext(), this, getView());
         this.root = root;
 
         return root;

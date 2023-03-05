@@ -63,7 +63,7 @@ public class WorkoutsFragment extends Fragment implements WorkoutsButtonsListene
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        service = new WorkoutService(getActivity().getApplicationContext(), this);
+        service = new WorkoutService(getActivity().getApplicationContext(), this, getView());
         service.getAll(uid);
 
         recyclerView.setAdapter(new WorkoutsAdapter(new ArrayList<>(), sampleRoutines, this));

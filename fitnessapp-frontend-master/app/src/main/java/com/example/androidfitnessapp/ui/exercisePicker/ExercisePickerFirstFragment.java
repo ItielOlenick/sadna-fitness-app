@@ -106,10 +106,10 @@ public class ExercisePickerFirstFragment extends Fragment implements WgerService
             }
         });
 
-        exercisesService = new ExercisesService(getContext(), this);
+        exercisesService = new ExercisesService(getContext(), this, getView());
         exercisesService.getAllExercises(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-        wgerService = new WgerService(getContext(), this);
+        wgerService = new WgerService(getContext(), this, getView());
         wgerService.getCategories();
 
     }

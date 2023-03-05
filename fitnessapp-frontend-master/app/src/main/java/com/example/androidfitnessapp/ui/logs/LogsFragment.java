@@ -49,7 +49,7 @@ public class LogsFragment extends Fragment implements LogServiceListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
-        service = new LogService(getActivity().getApplicationContext(), this);
+        service = new LogService(getActivity().getApplicationContext(), this, getView());
         service.getAllLogs(uid);
     }
 

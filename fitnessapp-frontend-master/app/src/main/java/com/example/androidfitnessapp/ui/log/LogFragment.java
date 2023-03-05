@@ -1,6 +1,5 @@
 package com.example.androidfitnessapp.ui.log;
 
-import android.app.ActionBar;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,20 +15,11 @@ import com.example.androidfitnessapp.Util;
 import com.example.androidfitnessapp.databinding.FragmentLogBinding;
 import com.example.androidfitnessapp.services.LogService;
 import com.example.androidfitnessapp.services.LogServiceListener;
-import com.example.androidfitnessapp.ui.adapters.log.LogExerciseData;
 import com.example.androidfitnessapp.ui.adapters.log.LogExercisesAdapter;
 import com.example.androidfitnessapp.ui.adapters.logs.SummarisedWorkoutLogData;
-import com.google.firebase.auth.FirebaseAuth;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 
 public class LogFragment extends Fragment implements LogServiceListener {
 
@@ -55,7 +45,7 @@ public class LogFragment extends Fragment implements LogServiceListener {
     {
         super.onViewCreated(view, savedInstanceState);
         int id = getArguments().getInt("id");
-        service = new LogService(getActivity().getApplicationContext(), this);
+        service = new LogService(getActivity().getApplicationContext(), this, getView() );
         service.getLog(id);
     }
 

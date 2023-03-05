@@ -41,7 +41,7 @@ public class ExercisesFragment extends Fragment implements ExercisesServiceListe
 
         binding = FragmentExercisesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        service = new ExercisesService(getContext(), this);
+        service = new ExercisesService(getContext(), this, getView());
         recyclerView = root.findViewById(R.id.recycler_custom_exercises);
         uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 

@@ -42,4 +42,5 @@
     <string name="channel_description">\"Test Description\"</string>
     <string name="title_log">Workout Log</string>
     <string name="title_choose_exercise">Choose an exercise</string>
+    <string name="error_occurred_the_server_might_be_down_please_try_again_later">Error occurred. The server might be down. Please try again later</string>
 </resources>

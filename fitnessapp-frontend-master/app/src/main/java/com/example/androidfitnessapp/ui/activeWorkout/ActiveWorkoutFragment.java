@@ -1,12 +1,8 @@
 package com.example.androidfitnessapp.ui.activeWorkout;
 
-import static androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,12 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.androidfitnessapp.MainActivity;
 import com.example.androidfitnessapp.R;
 
 import com.example.androidfitnessapp.data.WorkoutData;
@@ -41,8 +35,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Date;
-import java.util.Locale;
-import java.util.Timer;
 
 
 public class ActiveWorkoutFragment extends Fragment implements SaveWorkoutButtonListener, LogServiceListener, TimerListener
@@ -69,7 +61,7 @@ public class ActiveWorkoutFragment extends Fragment implements SaveWorkoutButton
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
     {
         super.onViewCreated(view, savedInstanceState);
-        logService = new LogService(getActivity().getApplicationContext(), this);
+        logService = new LogService(getActivity().getApplicationContext(), this, getView());
         ActiveWorkoutFragmentArgs args = ActiveWorkoutFragmentArgs.fromBundle(getArguments());
         data = args.getWorkoutData();
 

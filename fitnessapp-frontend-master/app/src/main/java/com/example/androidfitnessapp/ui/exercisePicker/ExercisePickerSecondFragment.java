@@ -67,21 +67,13 @@ public class ExercisePickerSecondFragment extends Fragment implements WgerServic
 
         ExercisePickerSecondFragmentArgs args = ExercisePickerSecondFragmentArgs.fromBundle(getArguments());
         int categoryID = args.getId();
-        String categoryName = args.getName();
-        ExerciseData data = new ExerciseData();
+
         workoutData = args.getWorkoutData();
         workoutType = args.getWorkoutType();
         recyclerView = view.findViewById(R.id.recycler_exercise_picker_exercises);
 
 
-        //TODO:
-       // getActivity().setTitle(categoryName);
-
-      //  getActivity().getActionBar().setTitle(categoryName);
-
-        //NavHostFragment.findNavController(this).getCurrentDestination().getArguments();
-
-        wgerService = new WgerService(getContext(), this);
+        wgerService = new WgerService(getContext(), this, getView());
         wgerService.getWgerExercises(categoryID);
     }
 
