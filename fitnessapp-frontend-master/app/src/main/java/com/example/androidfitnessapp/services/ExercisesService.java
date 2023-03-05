@@ -14,7 +14,6 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-
 public class ExercisesService extends AppService
 {
     private ExercisesServiceListener listener;
